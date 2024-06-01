@@ -19,17 +19,22 @@
                 @endif
                 <p class="text-indigo-950 text-xl font-bold text-center py-2">Cheklis</p>
 
-                <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center">
+                @foreach ($todos as $todo)
+                <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center py-2">
                     <div class="hidden md:flex flex-col">
-                        <p class="text-indigo-950 text-xl font-bold">Activity</p>
-                        <h3 class="text-indigo-950 text-l">Date</h3>
+                        <p class="text-indigo-950 text-xl font-bold">{{ $todo->title }}</p>
+                        <h3 class="text-indigo-950 text-l py-2">{{ $todo->due_date }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
-                        <a href="#" class="font-bold py-2 px-4 bg-indigo-700 text-white rounded-full">
-                            <i class="fa-solid fa-check"></i>
-                        </a>
+                        <form method="POST" action="{{ route('staff.todos.complete', $todo->id) }}">
+                            @csrf
+                            <button type="submit" class="font-bold py-2 px-4 bg-indigo-700 text-white rounded-full">
+                                <i class="fa-solid fa-check"></i>
+                            </button>
+                        </form>
                     </div>
                 </div>
+                @endforeach
 
             </div>
         </div>
@@ -49,22 +54,32 @@
 
                 <p class="text-indigo-950 text-xl font-bold text-center py-2">Which has been done</p>
 
-                <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center">
+                @foreach ($completedTodos as $todo)
+                <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center py-2">
 
                     <div class="hidden md:flex flex-col">
-                        <p class="text-indigo-950 text-xl font-bold">Activity</p>
-                        <h3 class="text-indigo-950 text-l">Date</h3>
+                        <p class="text-indigo-950 text-xl font-bold">{{ $todo->title }}</p>
+                        <h3 class="text-indigo-950 text-l">{{ $todo->due_date }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center">
-                        <a href="#" class="font-bold py-2 px-4 bg-indigo-700 text-white rounded-full">
-                            <i class="fa fa-refresh" aria-hidden="true"></i>
-                        </a>
-                        <a href="#" class="font-bold py-2 px-4 bg-indigo-700 text-white rounded-full">
-                            <i class="fa fa-trash" aria-hidden="true"></i>
-                        </a>
+                        <form method="POST" action="{{ route('staff.todos.complete', $todo->id) }}">
+                            @csrf
+                            <button type="submit" class="font-bold py-2 px-4 bg-indigo-700 text-white rounded-full">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                            </button>
+                        </form>
+
+                        <form action="{{route('staff.plan.destroy', $todo->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="font-bold py-2 px-4 bg-red-700 text-white rounded-full">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </form>
                     </div>
 
                 </div>
+                @endforeach
 
             </div>
         </div>

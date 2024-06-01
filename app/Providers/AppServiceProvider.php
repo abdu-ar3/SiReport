@@ -2,10 +2,18 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use App\Models\Todo;
+use App\Policies\TodoPolicy;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AppServiceProvider extends ServiceProvider
 {
+
+    protected $policies = [
+        Todo::class => TodoPolicy::class,
+    ];
+
     /**
      * Register any application services.
      */
@@ -17,8 +25,10 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        \Log::info('AuthServiceProvider booting');
+        $this->registerPolicies();
     }
+    
 }

@@ -10,27 +10,33 @@
         <div class="max-w-3xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden p-10 shadow-sm sm:rounded-lg">
 
-                @if($errors->any())
-                @foreach($errors->all() as $error)
-                <div class="py-3 w-full rounded-3xl bg-red-500 text-white">
-                    {{$error}}
+                @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
                 </div>
-                @endforeach
                 @endif
 
-                <form method="POST" action="#" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('staff.plan.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div>
-                        <x-input-label for="todo_list" :value="__('To Do List')" />
-                        <x-text-input id="todo_list" class="block mt-1 w-full" type="text" name="todo_list"
-                            :value="old('todo_list')" required autofocus autocomplete="todo_list" />
-                        <x-input-error :messages="$errors->get('todo_list')" class="mt-2" />
+                        <x-input-label for="title" :value="__('To Do List')" />
+                        <x-text-input id="title" class="block mt-1 w-full" type="text" name="title"
+                            :value="old('title')" required autofocus autocomplete="title" />
+                        <x-input-error :messages="$errors->get('title')" class="mt-2" />
                     </div>
 
                     <div class="mt-4">
-                        <label for="start_date" class="block text-sm font-medium text-gray-700">Date Activity</label>
+                        <x-input-label for="description" :value="__('Deskripsi')" />
+                        <x-text-input id="description" class="block mt-1 w-full" type="text" name="description"
+                            :value="old('description')" required autofocus autocomplete="description" />
+                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
+                    </div>
+
+
+                    <div class="mt-4">
+                        <label for="due_date" class="block text-sm font-medium text-gray-700">Date Activity</label>
                         <div class="mt-1">
-                            <input type="date" name="start_date" id="start_date" required
+                            <input type="date" name="due_date" id="due_date" required
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                         </div>
                     </div>

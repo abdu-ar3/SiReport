@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::prefix('staff')->name('staff.')->group(function(){
         Route::resource('plan', PlanController::class)->middleware('role:staff');
         Route::get('/pdf', [PlanController::class, 'pdf'])->middleware('role:staff')->name('pdf');
+        Route::post('/todos/{todo}/complete', [PlanController::class, 'complete'])->name('todos.complete');
     });
 });
 
