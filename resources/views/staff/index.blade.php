@@ -23,7 +23,14 @@
                 <div class="item-card flex flex-col md:flex-row gap-y-10 justify-between md:items-center py-2">
                     <div class="hidden md:flex flex-col">
                         <p class="text-indigo-950 text-xl font-bold">{{ $todo->title }}</p>
-                        <h3 class="text-indigo-950 text-l py-2">{{ $todo->due_date }}</h3>
+                    </div>
+                    <div class="hidden md:flex flex-col">
+                        <h3 class="text-indigo-950 text-l">Start Date</h3>
+                        <h3 class="text-indigo-950 text-l">{{ $todo->start_date }}</h3>
+                    </div>
+                    <div class="hidden md:flex flex-col">
+                        <h3 class="text-indigo-950 text-l">Due Date</h3>
+                        <h3 class="text-indigo-950 text-l">{{ $todo->due_date }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center gap-x-3">
                         <form method="POST" action="{{ route('staff.todos.complete', $todo->id) }}">
@@ -59,6 +66,13 @@
 
                     <div class="hidden md:flex flex-col">
                         <p class="text-indigo-950 text-xl font-bold">{{ $todo->title }}</p>
+                    </div>
+                    <div class="hidden md:flex flex-col">
+                        <h3 class="text-indigo-950 text-l">Start Date</h3>
+                        <h3 class="text-indigo-950 text-l">{{ $todo->start_date }}</h3>
+                    </div>
+                    <div class="hidden md:flex flex-col">
+                        <h3 class="text-indigo-950 text-l">Due Date</h3>
                         <h3 class="text-indigo-950 text-l">{{ $todo->due_date }}</h3>
                     </div>
                     <div class="hidden md:flex flex-row items-center">

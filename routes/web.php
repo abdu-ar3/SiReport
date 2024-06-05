@@ -21,6 +21,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('plan', PlanController::class)->middleware('role:staff');
         Route::get('/pdf', [PlanController::class, 'pdf'])->middleware('role:staff')->name('pdf');
         Route::post('/todos/{todo}/complete', [PlanController::class, 'complete'])->name('todos.complete');
+        Route::post('/todos/report', [PlanController::class, 'generateReport'])->name('todos.generateReport');
     });
 });
 

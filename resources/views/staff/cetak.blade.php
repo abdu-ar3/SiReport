@@ -18,12 +18,12 @@
                 @endforeach
                 @endif
 
-                <form method="POST" action="#" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('staff.todos.generateReport') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mt-4">
-                        <label for="start_date" class="block text-sm font-medium text-gray-700">Date</label>
+                        <label for="due_date" class="block text-sm font-medium text-gray-700">Date</label>
                         <div class="mt-1">
-                            <input type="date" name="start_date" id="start_date" required
+                            <input type="date" name="due_date" id="due_date" required
                                 class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md">
                         </div>
                     </div>
